@@ -9,5 +9,6 @@ provider "aws" {
 resource "aws_s3_bucket" "gitops_bucket" {
 
   bucket = "rbdevi-gitops-final-deploy-2026"
-
+ tags = {
+Name = "Gitops-managed-bucket"
 }
