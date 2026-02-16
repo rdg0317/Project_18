@@ -12,3 +12,4 @@ resource "aws_s3_bucket" "gitops_bucket" {
  tags = {
 Name = "Gitops-managed-bucket"
 }
+}
