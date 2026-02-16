@@ -1,0 +1,51 @@
+name: "Project 18: GitOps Deploy"
+
+
+
+on:
+
+  push:
+
+    branches: [ "main" ]
+
+
+
+jobs:
+
+  terraform-apply:
+
+    runs-on: ubuntu-latest
+
+    env:
+
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+
+    steps:
+
+      - name: Checkout Code
+
+        uses: actions/checkout@v4
+
+
+
+      - name: Setup Terraform
+
+        uses: hashicorp/setup-terraform@v3
+
+
+
+      - name: Terraform Init
+
+        run: terraform init
+
+
+
+      - name: Terraform Apply (GitOps Trigger)
+
+        # The -auto-approve flag is critical for automation!
+
+        run: terraform apply -auto-approve
